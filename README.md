@@ -30,6 +30,21 @@ Choose the stack that best fits your needs:
 | **Simple Prisma**    | Prisma  | -           | PostgreSQL | Lightweight wrapper for Prisma and PG. No Auth.                      |
 | **Minimal tRPC**     | -       | -           | -          | Minimal setup with just tRPC + React Query.                          |
 
+| **Minimal tRPC** | - | - | - | Minimal setup with just tRPC + React Query. |
+
+## ✨ Perfect for "Vibe-Coding"
+
+Designed for developers (and AI agents) who crave **consistency** and **flow**:
+
+- **🧘‍♂️ Zero Mental Overhead**: Every template follows the exact same "Feature-Based" folder structure (`src/features`, `src/routes`, `src/server`). Switch stacks without switching mental models.
+- **🤖 AI-Optimized**: The codebase is structured to be easily understood by LLMs (Cursor, Windsurf, Copilot). Context retrieval is efficient, leading to smarter AI suggestions.
+- **🧠 AI_RULES.md Included**: Each boilerplates comes with a comprehensive `AI_RULES.md` file. This is your "Context Prompts" ready to copy-paste into your AI editor. It ensures the AI writes code that follows _our_ project standards (e.g. using `useSuspenseQuery` instead of `useQuery`).
+- **🛡️ Production-Grade Guardrails**:
+  - **Strict Env Validation**: App won't start if `.env` is wrong.
+  - **Type-Safe Everywhere**: From database to frontend component.
+  - **Linting & Formatting**: Pre-configured ESLint and Prettier for automatic consistency.
+- **🎨 Instant Aesthetics**: Don't waste "vibe" time setting up Tailwind. It's already there with Shadcn UI, ready for you to build beautiful things immediately.
+
 ## 🛠️ Common Features
 
 All templates share a solid foundation based on the latest React ecosystem:
