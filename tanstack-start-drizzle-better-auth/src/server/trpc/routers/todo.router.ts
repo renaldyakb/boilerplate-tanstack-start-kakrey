@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter } from "../init";
-import { publicProcedure } from "../procedures";
+import { publicProcedure, protectedProcedure } from "../procedures";
 import { db } from "@/server/db";
 import { todos } from "@/server/db/schema";
 import { desc, eq } from "drizzle-orm";
@@ -15,7 +15,7 @@ export const todoRouter = createTRPCRouter({
     }
   }),
 
-  create: publicProcedure
+  create: protectedProcedure
     .input(z.object({ title: z.string().min(1) }))
     .mutation(async ({ input }) => {
       const [todo] = await db
@@ -25,7 +25,7 @@ export const todoRouter = createTRPCRouter({
       return todo;
     }),
 
-  toggle: publicProcedure
+  toggle: protectedProcedure
     .input(z.object({ id: z.string().uuid(), completed: z.boolean() }))
     .mutation(async ({ input }) => {
       const [todo] = await db
@@ -36,7 +36,7 @@ export const todoRouter = createTRPCRouter({
       return todo;
     }),
     
-  delete: publicProcedure
+  delete: protectedProcedure
     .input(z.object({ id: z.string().uuid() }))
     .mutation(async ({ input }) => {
       await db.delete(todos).where(eq(todos.id, input.id));

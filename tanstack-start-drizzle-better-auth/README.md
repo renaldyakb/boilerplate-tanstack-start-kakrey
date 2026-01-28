@@ -81,6 +81,38 @@ Server will start at `http://localhost:3000`.
 | `npm run db:migrate`  | Run pending migrations         |
 | `npm run db:studio`   | Open Drizzle Studio            |
 
+## 🔐 Authentication & Middleware
+
+This boilerplate comes with **Better Auth** pre-configured for secure authentication.
+
+### Authentication Flow
+
+- **Login**: `/login`
+- **Signup**: `/signup`
+- **Client**: `src/lib/auth-client.ts`
+- **Server**: `src/lib/auth.ts`
+
+### Protected Procedures
+
+To secure your tRPC API endpoints, use the `protectedProcedure` middleware. This ensures that only authenticated users can access the procedure.
+
+```typescript
+// src/server/trpc/routers/todo.router.ts
+import { protectedProcedure } from "../procedures";
+
+export const todoRouter = createTRPCRouter({
+  // Only authenticated users can create todos
+  create: protectedProcedure
+    .input(z.object({ title: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      // ctx.session.user is guaranteed to exist here
+      console.log(ctx.session.user.id);
+    }),
+});
+```
+
+If an unauthenticated user tries to call a `protectedProcedure`, the server will throw `TRPCError` with code `UNAUTHORIZED`.
+
 ## 📁 Project Structure
 
 ```

@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: boilerplate_db_prisma_better_auth
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-boilerplate_better_auth_prisma}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
