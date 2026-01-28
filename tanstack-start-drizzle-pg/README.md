@@ -24,13 +24,15 @@ A production-ready boilerplate built with the latest React 19 ecosystem. Feature
 ### 1. Create Project
 
 **Option A: Using npx (Recommended)**
+
 ```bash
-npx degit renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-drizzle-pg my-app
+npx giget@latest gh:renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-drizzle-pg my-app
 cd my-app
 npm install
 ```
 
 **Option B: Manual Clone**
+
 ```bash
 git clone [repo-url]
 cd [project-name]
@@ -65,16 +67,16 @@ Server will start at `http://localhost:3000`.
 
 ## 📜 Scripts
 
-| Script | Description |
-| :--- | :--- |
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run check` | Run TypeScript & ESLint checks |
-| `npm run db:generate` | Generate migration files |
-| `npm run db:push` | Push schema changes to DB |
-| `npm run db:migrate` | Run pending migrations |
-| `npm run db:studio` | Open Drizzle Studio |
+| Script                | Description                    |
+| :-------------------- | :----------------------------- |
+| `npm run dev`         | Start development server       |
+| `npm run build`       | Build for production           |
+| `npm run start`       | Start production server        |
+| `npm run check`       | Run TypeScript & ESLint checks |
+| `npm run db:generate` | Generate migration files       |
+| `npm run db:push`     | Push schema changes to DB      |
+| `npm run db:migrate`  | Run pending migrations         |
+| `npm run db:studio`   | Open Drizzle Studio            |
 
 ## 📁 Project Structure
 
