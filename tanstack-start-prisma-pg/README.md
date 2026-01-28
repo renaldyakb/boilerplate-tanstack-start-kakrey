@@ -26,7 +26,7 @@ A production-ready boilerplate built with the latest React 19 ecosystem. Feature
 **Option A: Using npx (Recommended)**
 
 ```bash
-npx degit renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-prisma-pg my-app
+npx giget@latest gh:renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-prisma-pg my-app
 cd my-app
 npm install
 ```
