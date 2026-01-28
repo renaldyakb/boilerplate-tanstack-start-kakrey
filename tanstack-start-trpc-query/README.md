@@ -11,7 +11,7 @@ An example demonstrating integration of tRPC with TanStack Query.
 **Option A: Using npx (Recommended)**
 
 ```bash
-npx giget@latest gh:renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-trpc-query my-app
+npx giget@latest gh:renaldyakb/boilerplate-tanstack-start-kakrey/tanstack-start-trpc-query my-app
 cd my-app
 npm install
 ```

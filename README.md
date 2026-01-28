@@ -9,7 +9,7 @@ Collection of production-ready boilerplates for modern React web development.
 Full-stack with Prisma 7, tRPC, and TanStack Start.
 
 ```bash
-npx giget@latest gh:renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-prisma-pg my-app
+npx giget@latest gh:renaldyakb/boilerplate-tanstack-start-kakrey/tanstack-start-prisma-pg my-app
 ```
 
 ### 2. [Drizzle + PostgreSQL](./tanstack-start-drizzle-pg)
@@ -17,7 +17,7 @@ npx giget@latest gh:renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-prisma
 Same stack but using Drizzle ORM.
 
 ```bash
-npx giget@latest gh:renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-drizzle-pg my-app
+npx giget@latest gh:renaldyakb/boilerplate-tanstack-start-kakrey/tanstack-start-drizzle-pg my-app
 ```
 
 ### 3. [tRPC + React Query](./tanstack-start-trpc-query)
@@ -25,5 +25,5 @@ npx giget@latest gh:renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-drizzl
 Minimal example for tRPC and React Query integration.
 
 ```bash
-npx giget@latest gh:renaldyakb/boilerplate-kakrey-tanstack/tanstack-start-trpc-query my-app
+npx giget@latest gh:renaldyakb/boilerplate-tanstack-start-kakrey/tanstack-start-trpc-query my-app
 ```
