@@ -1,21 +1,60 @@
-# Renaldy's TanStack Boilerplates
+# TanStack Start Boilerplate Collection 🚀
 
-Collection of production-ready boilerplates for modern React web development.
+A comprehensive collection of production-ready boilerplates for **TanStack Start**, designed to kickstart your full-stack React applications with modern best practices.
 
-## Available Boilerplates
+Featuring integrations with **Drizzle ORM**, **Prisma**, **Better Auth**, and **PostgreSQL**.
 
-### 1. [Prisma + PostgreSQL](./tanstack-start-prisma-pg) (Recommended)
+## 🚀 Quick Start
 
-Full-stack with Prisma 7, tRPC, and TanStack Start.
-
-```bash
-npx giget@latest gh:renaldyakb/boilerplate-tanstack-start-kakrey/tanstack-start-prisma-pg my-app
-```
-
-### 4. [tRPC + React Query](./tanstack-start-trpc-query)
-
-Minimal example for tRPC and React Query integration.
+The fastest way to get started is by using our interactive CLI. Run the following command in your terminal:
 
 ```bash
-npx giget@latest gh:renaldyakb/boilerplate-tanstack-start-kakrey/tanstack-start-trpc-query my-app
+npx github:renaldyakb/boilerplate-tanstack-start-kakrey
 ```
+
+This will launch an interactive wizard that guides you through:
+
+1.  Selecting your preferred technology stack.
+2.  Naming your project.
+3.  Cloning the template ready for development.
+
+## 📦 Available Templates
+
+Choose the stack that best fits your needs:
+
+| Template Name        | ORM     | Auth        | Database   | Description                                                          |
+| :------------------- | :------ | :---------- | :--------- | :------------------------------------------------------------------- |
+| **Complete Drizzle** | Drizzle | Better Auth | PostgreSQL | **(Recommended)** Full-stack starter with rigorous type safety.      |
+| **Complete Prisma**  | Prisma  | Better Auth | PostgreSQL | **(Popular)** Full-stack starter with the friendly Prisma ecosystem. |
+| **Simple Drizzle**   | Drizzle | -           | PostgreSQL | Lightweight wrapper for Drizzle and PG. No Auth.                     |
+| **Simple Prisma**    | Prisma  | -           | PostgreSQL | Lightweight wrapper for Prisma and PG. No Auth.                      |
+| **Minimal tRPC**     | -       | -           | -          | Minimal setup with just tRPC + React Query.                          |
+
+## 🛠️ Common Features
+
+All templates share a solid foundation based on the latest React ecosystem:
+
+- **⚡ Framework**: [TanStack Start](https://tanstack.com/router/latest/docs/framework/react/start/overview) (Server-Side Rendering, File-based Routing)
+- **🎨 UI**: [Tailwind CSS v4](https://tailwindcss.com) + [Shadcn UI](https://ui.shadcn.com)
+- **🔄 Data Fetching**: [TanStack Query](https://tanstack.com/query) + [tRPC](https://trpc.io)
+- **🛡️ Type Safety**: End-to-end type safety with TypeScript and Zod.
+- **🐳 Docker**: Ready-to-use `docker-compose.yml` for local database development.
+
+## 🏁 Post-Installation
+
+After creating your project, follow these general steps (specific instructions are in each project's README):
+
+1.  **Enter directory**: `cd <your-project-name>`
+2.  **Install dependencies**: `npm install`
+3.  **Setup Environment**: `cp .env.example .env`
+4.  **Start Database**: `npm run db:up`
+5.  **Push Schema**: `npm run db:push`
+6.  **Start Dev Server**: `npm run dev`
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request if you have suggestions for improvements or new templates.
+
+## 📄 License
+
+MIT © [Renaldy Akbar](https://github.com/renaldyakb)
