@@ -20,7 +20,15 @@ Same stack but using Drizzle ORM.
 npx giget@latest gh:renaldyakb/boilerplate-tanstack-start-kakrey/tanstack-start-drizzle-pg my-app
 ```
 
-### 3. [tRPC + React Query](./tanstack-start-trpc-query)
+### 3. [Drizzle + Better Auth](./tanstack-start-drizzle-better-auth)
+
+Drizzle ORM with Better Auth integration.
+
+```bash
+npx giget@latest gh:renaldyakb/boilerplate-tanstack-start-kakrey/tanstack-start-drizzle-better-auth my-app
+```
+
+### 4. [tRPC + React Query](./tanstack-start-trpc-query)
 
 Minimal example for tRPC and React Query integration.
 
