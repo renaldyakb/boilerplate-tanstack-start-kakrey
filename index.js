@@ -45,17 +45,77 @@ const TEMPLATES = [
 ];
 
 async function main() {
-  console.log(bold("\n🚀  Welcome to Create Kakrey Stack!\n"));
+  console.log(bold("\n🚀 Create Kakrey Stack!\n"));
 
-  const response = await prompts(
-    [
-      {
-        type: "select",
-        name: "template",
-        message: "Which boilerplate would you like to use?",
-        choices: TEMPLATES,
-        initial: 0,
+  // Check for arguments: "." or project name
+  const args = process.argv.slice(2);
+  const firstArg = args[0];
+  const installInCurrentDir = firstArg === ".";
+  const projectNameFromArg = firstArg && firstArg !== "." ? firstArg : null;
+  
+  let projectName;
+  let targetDir;
+
+  if (installInCurrentDir) {
+    // Install in current directory
+    targetDir = process.cwd();
+    projectName = path.basename(targetDir);
+    
+    // Check if directory has files (excluding common ignorable files)
+    const existingFiles = fs.readdirSync(targetDir).filter(
+      (f) => !f.startsWith(".") && f !== "node_modules"
+    );
+    
+    if (existingFiles.length > 0) {
+      const { confirmOverwrite } = await prompts({
+        type: "confirm",
+        name: "confirmOverwrite",
+        message: `Current directory is not empty. Continue anyway?`,
+        initial: false,
+      });
+      
+      if (!confirmOverwrite) {
+        console.log(red("✖ Operation cancelled"));
+        process.exit(1);
+      }
+    }
+    
+    console.log(dim(`📁 Installing in current directory: ${cyan(targetDir)}\n`));
+  } else if (projectNameFromArg) {
+    // Project name provided as argument
+    projectName = projectNameFromArg;
+    targetDir = path.resolve(process.cwd(), projectName);
+    
+    if (fs.existsSync(targetDir)) {
+      console.log(red(`✖ Directory "${projectName}" already exists`));
+      process.exit(1);
+    }
+    
+    console.log(dim(`📁 Creating project: ${cyan(projectName)}\n`));
+  }
+
+  // Template selection
+  const templateResponse = await prompts(
+    {
+      type: "select",
+      name: "template",
+      message: "Which boilerplate would you like to use?",
+      choices: TEMPLATES,
+      initial: 0,
+    },
+    {
+      onCancel: () => {
+        console.log(red("✖ Operation cancelled"));
+        process.exit(1);
       },
+    }
+  );
+
+  const { template } = templateResponse;
+
+  // Project name (only ask if not using ".")
+  if (!installInCurrentDir) {
+    const nameResponse = await prompts(
       {
         type: "text",
         name: "projectName",
@@ -69,20 +129,21 @@ async function main() {
           return true;
         },
       },
-    ],
-    {
-      onCancel: () => {
-        console.log(red("✖ Operation cancelled"));
-        process.exit(1);
-      },
-    }
-  );
+      {
+        onCancel: () => {
+          console.log(red("✖ Operation cancelled"));
+          process.exit(1);
+        },
+      }
+    );
+    
+    projectName = nameResponse.projectName;
+    targetDir = path.resolve(process.cwd(), projectName);
+  }
 
-  const { template, projectName } = response;
-  const targetDir = path.resolve(process.cwd(), projectName);
   const selectedTemplate = TEMPLATES.find((t) => t.value === template);
 
-  console.log(`\n⏳  Downloading ${cyan(template)} to ${green(projectName)}...\n`);
+  console.log(`\n⏳  Downloading ${cyan(template)}${installInCurrentDir ? "" : ` to ${green(projectName)}`}...\n`);
 
   try {
     // Download from GitHub
@@ -103,25 +164,31 @@ async function main() {
       console.log(green("✔ Created .env from .env.example"));
     }
 
-    console.log(green(`\n✔ Success! Project created in ${bold(projectName)}\n`));
+    console.log(green(`\n✔ Success! Project created${installInCurrentDir ? " in current directory" : ` in ${bold(projectName)}`}\n`));
     
     // Print next steps
     console.log(bold("📋 Next Steps:\n"));
-    console.log(`  ${dim("1.")} ${cyan(`cd ${projectName}`)}`);
-    console.log(`  ${dim("2.")} ${cyan("npm install")}`);
+    
+    let stepNum = 1;
+    
+    if (!installInCurrentDir) {
+      console.log(`  ${dim(`${stepNum}.`)} ${cyan(`cd ${projectName}`)}`);
+      stepNum++;
+    }
+    
+    console.log(`  ${dim(`${stepNum}.`)} ${cyan("npm install")}`);
+    stepNum++;
     
     if (selectedTemplate?.hasDb) {
-      console.log(`  ${dim("3.")} ${cyan("npm run db:up")}         ${dim("# Start PostgreSQL via Docker")}`);
+      console.log(`  ${dim(`${stepNum}.`)} ${cyan("npm run db:up")}         ${dim("# Start PostgreSQL via Docker")}`);
+      stepNum++;
       
-      if (selectedTemplate.orm === "prisma") {
-        console.log(`  ${dim("4.")} ${cyan("npm run db:push")}       ${dim("# Push schema to database")}`);
-      } else if (selectedTemplate.orm === "drizzle") {
-        console.log(`  ${dim("4.")} ${cyan("npm run db:push")}       ${dim("# Push schema to database")}`);
-      }
+      console.log(`  ${dim(`${stepNum}.`)} ${cyan("npm run db:push")}       ${dim("# Push schema to database")}`);
+      stepNum++;
       
-      console.log(`  ${dim("5.")} ${cyan("npm run dev")}`);
+      console.log(`  ${dim(`${stepNum}.`)} ${cyan("npm run dev")}`);
     } else {
-      console.log(`  ${dim("3.")} ${cyan("npm run dev")}`);
+      console.log(`  ${dim(`${stepNum}.`)} ${cyan("npm run dev")}`);
     }
     
     console.log();
@@ -150,4 +217,5 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+
 
